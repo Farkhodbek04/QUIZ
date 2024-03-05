@@ -21,3 +21,18 @@ def create_quiz(request):
         # if title:
         # return render(request, 'quiz/create_quiz.html')
     return render(request, 'quiz/create_quiz.html')
+
+def delete_quiz(request, id):
+    quizes = models.Quiz.objects.all()
+    if request.method =='GET':
+        quiz = models.Quiz.objects.get(id=id)
+        quiz.delete()
+        return redirect('index')
+    return render(request, 'index.html', {'quizes':quizes})
+
+def update_quiz(request):
+    return render(request, 'quiz/update_quiz.html')
+
+# def quiz_detail(request, id):
+#     question = models.Question.objects.filter(quiz_id=id)
+#     return render(request,)

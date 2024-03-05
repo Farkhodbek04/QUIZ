@@ -1,3 +1,6 @@
+import random
+import string
+
 from django.contrib.auth.models import User
 
 from django.db import models
@@ -7,6 +10,7 @@ class Quiz(models.Model):
     """ This is table of quiz. """
     title = models.CharField(max_length=255, unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    code = models.CharField(max_length=255, blank=True, unique=True)
 
     @property
     def quiz_questions(self):
@@ -15,6 +19,11 @@ class Quiz(models.Model):
     
     def __str__(self):
         return self.title
+    
+    def save(self, *args, **kwargs):
+        if not self.code:
+            self.code = ''.join(random.sample(string.ascii_letters+string.digits, 20))
+            super(Quiz, self).save(*args, **kwargs)
 
 
 class Question(models.Model):
