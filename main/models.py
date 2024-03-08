@@ -5,10 +5,11 @@ from django.contrib.auth.models import User
 
 from django.db import models
 from django.core.exceptions import ValidationError
+from django_ckeditor_5.fields import CKEditor5Field
 
 class Quiz(models.Model): 
     """ This is table of quiz. """
-    title = models.CharField(max_length=255, unique=True)
+    title = CKEditor5Field('Title', config_name='extends') 
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     code = models.CharField(max_length=255, blank=True, unique=True)
 

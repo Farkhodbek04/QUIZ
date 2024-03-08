@@ -2,6 +2,7 @@ from . import models
 
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django_ckeditor_5.widgets import CKEditor5Widget 
 
 def index(request):
     if request.method == 'GET':
@@ -12,15 +13,13 @@ def index(request):
 # @login_required
 def create_quiz(request):
     if request.method == 'POST':
-        title = request.POST.get('title')
-        author = request.user
-        print(title)
-        if title and author:
-            models.Quiz.objects.create(title=title, author=author)
-            return redirect('index')
-        # if title:
-        # return render(request, 'quiz/create_quiz.html')
-    return render(request, 'quiz/create_quiz.html')
+        title = request.POST.get('title')  # Get the title from the POST data
+        if title:  # Check if the title is not empty
+            author = request.user  # Get the current user as the author
+            models.Quiz.objects.create(title=title, author=author)  # Create a new Quiz instance with the title and author
+            return redirect('index')  # Redirect to the index page after successful creation
+    return render(request, 'quiz/create_quiz.html')  # Render the create_quiz.html template
+
 
 def delete_quiz(request, id):
     quizes = models.Quiz.objects.all()

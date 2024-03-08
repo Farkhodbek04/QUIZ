@@ -9,19 +9,21 @@
       {% for quiz in quizes %}
       <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <div class="card">
-          <div class="card-statistic-4">
+          <div class="card-statistic-4" style="display: block; height: 300px;">
             <div class="align-items-center justify-content-between">
               <div class="row " style="display: flex; height: 150px;">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
                   <div class="card-content">
                     <h5 class="font-25">{{quiz.title}}</h5>
                     <h2 class="mb-3 font-18">{{quiz.quiz_questions}} question(s)</h2>
-                    <!-- <div class="copy-text"style="display: flex; height: 15px; margin-bottom: 8px;" id="copy-text-{{quiz.id}}">
-                      <input type="text"  class="text" value="{{quiz.id}}" disabled/>
-                      <button class="copy-button" ><i class="fa fa-clone"></i></button>
-                    </div> -->
+                    
                     <a href="{% url 'update_quiz' %}" class="btn btn-success">Update</a>
                     <a href="{% url 'delete_quiz' quiz.id %}" class="btn btn-danger ml-2">Delete</a>
+                    <div class="copy-text" id="copy-text-{{quiz.id}}">
+                      <input type="text" class="text" value="{{quiz.code}}" disabled/>
+                      <button class="copy-button" onclick="copyToClipboard('{{quiz.code}}')">Copy</button>
+                    </div>
+
                   </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
@@ -129,5 +131,20 @@
     </div>
   </div>
 </div>
+
+<script>
+          
+
+  const textArea = document.createElement("textarea");
+  textArea.value = code;
+  document.body.appendChild(textArea);
+  textArea.select();
+  document.execCommand('copy');
+  document.body.removeChild(textArea);
+
+
+
+      </script>
+
 
 {% endblock %}
