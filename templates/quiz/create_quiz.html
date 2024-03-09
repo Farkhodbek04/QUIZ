@@ -18,10 +18,10 @@
               <form action="{% url 'create_quizes' %}" method="post"> {% csrf_token %}
                 <div class="form-group">
                   <!-- Replace the textarea with CKEditor 5 -->
-                  <div id="editor"></div>
+                  <textarea id="editor" name="title"> </textarea>
                 </div>
                 <div class="card-footer text-right">
-                  <button class="btn btn-primary mr-1" type="submit" fdprocessedid="8pvhtn">Submit</button>
+                  <button class="btn btn-primary mr-1" type="submit" >Submit</button>
                   <a href="{% url 'index' %}"><button class="btn btn-danger" type="button">Back</button></a>
                 </div>
               </form>

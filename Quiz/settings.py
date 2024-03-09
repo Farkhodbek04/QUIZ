@@ -293,7 +293,6 @@ CKEDITOR_5_CONFIGS = {
     },
 }
 
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
