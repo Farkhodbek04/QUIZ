@@ -9,7 +9,9 @@
   <title>Quiz app</title>
   <!-- General CSS Files -->
   {% load static %}
+  <script src="https://cdn.ckeditor.com/ckeditor5/35.2.0/classic/ckeditor.js"></script>
   <link href="{% static 'django_ckeditor_5/dist/styles.css' %}" type="text/css" media="all" rel="stylesheet">
+  <script src="{% static 'django_ckeditor_5/dist/bundle.js' %}"></script>
   <link rel="stylesheet" href="{% static 'assets/css/app.min.css' %}">
   <!-- Template CSS -->
   <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
@@ -226,7 +228,13 @@
 <!-- Custom JS File -->
 <script src="{% static 'assets/js/custom.js' %}"></script>
 <script src="{% static 'assets/js/copy.js' %}"></script>
-
+<script>
+  ClassicEditor
+    .create(document.querySelector('#editor'))
+    .catch(error => {
+      console.error(error);
+    });
+</script>
 
 <!-- {% url 'index' %}  21 Nov 2019 03:47:04 GMT -->
 </html>
